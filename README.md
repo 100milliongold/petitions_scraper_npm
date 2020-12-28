@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to petitions_scraper_npm 👋</h1>
+<h1 align="center">청와대 국민청원 수집기 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/100milliongold/petitions_scraper_npm#readme" target="_blank">
@@ -19,7 +19,7 @@
 
 ![result](./docs/result.gif)
 
-> 청와대 국민청원 게시판의 데이터를 수집하는 스크래퍼
+> 청와대 국민청원 게시판의 데이터를 수집하는 스크래퍼 (https://github.com/lovit/petitions_scraper 참고)
 
 ### 🏠 [Homepage](https://github.com/100milliongold/petitions_scraper_npm#readme)
 
