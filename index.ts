@@ -12,3 +12,5 @@ export function petition_analyzer(
 ): Promise<PETION_LIST> {
   return petitions_get_list(start, end)
 }
+
+export default petition_analyzer

@@ -10,6 +10,11 @@
   <a href="https://github.com/100milliongold/petitions_scraper_npm/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/github/license/100milliongold/petitions_scraper_npm" />
   </a>
+  <a href="https://travis-ci.com/100milliongold/petitions_scraper_npm" target="_blank">
+    <img alt="travis" src="https://travis-ci.com/100milliongold/petitions_scraper_npm.svg?branch=main" />
+  </a>
+  <a href='https://coveralls.io/github/100milliongold/petitions_scraper_npm?branch=main'><img src='https://coveralls.io/repos/github/100milliongold/petitions_scraper_npm/badge.svg?branch=main' alt='Coverage Status' /></a>
+
 </p>
 
 ![result](./docs/result.gif)
@@ -21,7 +26,27 @@
 ## Install
 
 ```sh
-npm install
+npm install -g petitions_scraper_npm
+```
+
+or
+
+```sh
+npm install --save petitions_scraper_npm
+```
+
+## Started (shell)
+
+```sh
+node_petitions_scraper -s <START> -e <END> -o <SAVEFILE>
+```
+
+## Started (code)
+
+```javascript
+import node_petitions_scraper from 'node_petitions_scraper'
+
+petition_analyzer(<START> , <END>).then(res => console.log(res))
 ```
 
 ## Build
