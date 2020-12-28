@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
   clearMocks: true,
   moduleDirectories: ['node_modules', '.'],
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  coverageDirectory: './tests/coverage',
   moduleNameMapper: {
     '@exmpl/(.*)': '<rootDir>/$1',
   },
