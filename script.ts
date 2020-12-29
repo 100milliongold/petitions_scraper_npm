@@ -2,7 +2,12 @@
 import { INDEX, PETION, PETITION_IDX_LIST } from 'typings'
 import { petitions_scraper, generator_array } from './utils'
 
-const createCsvWriter = require('csv-writer').createObjectCsvWriter
+import stringify from 'csv-stringify'
+import fs from 'fs'
+
+import _ from 'lodash'
+import { encode } from 'iconv-lite'
+
 var clc = require('cli-color')
 
 /**
@@ -29,8 +34,6 @@ var argv = require('yargs/yargs')(process.argv.slice(2))
   .help('h')
   .alias('h', 'help')
   .epilog('copyright 2020').argv
-
-var fs = require('fs')
 
 /**
  * 시작 번호
@@ -70,27 +73,64 @@ const scraper_list = list.map(
   }
 )
 
-var config: any = {
-  path: `${output}.csv`,
-  header: [
-    { id: 'begin', title: 'begin' },
-    { id: 'category', title: 'category' },
-    { id: 'content', title: 'content' },
-    { id: 'crawled_at', title: 'crawled_at' },
-    { id: 'end', title: 'end' },
-    { id: 'num_agree', title: 'num_agree' },
-    { id: 'status', title: 'status' },
-    { id: 'title', title: 'title' },
-    { id: 'petition_idx', title: 'petition_idx' },
-  ],
+let columns = {
+  title: 'title',
+  category: 'category',
+  begin: 'begin',
+  end: 'end',
+  crawled_at: 'crawled_at',
+  status: 'status',
+  num_agree: 'num_agree',
+  petition_idx: 'petition_idx',
+  content: 'content',
 }
 
-if (ec) {
-  config['encoding'] = ec
-}
+const dateFormat = require('dateformat')
 
-const csvWriter = createCsvWriter(config)
-
+/**
+ * 수집 완료
+ */
 Promise.all(scraper_list).then((result) => {
-  csvWriter.writeRecords(result).then(() => console.log('CSV 파일 저장성공!'))
+  const data = _(result)
+    .map(
+      ({
+        title,
+        category,
+        begin,
+        end,
+        crawled_at,
+        status,
+        num_agree,
+        petition_idx,
+        content,
+      }: PETION) => [
+        title,
+        category,
+        dateFormat(begin, 'yyyy-mm-dd 00:00:00'),
+        dateFormat(end, 'yyyy-mm-dd 00:00:00'),
+        dateFormat(crawled_at, 'yyyy-mm-dd HH:MM:ss'),
+        status,
+        num_agree,
+        petition_idx,
+        content,
+      ]
+    )
+    .value()
+
+  // console.log(data, columns)
+
+  let iconv = require('iconv-lite')
+
+  stringify(data, { header: true, columns: columns }, (err, text) => {
+    if (err) throw err
+    // console.log(text)
+
+    if (ec) {
+      text = iconv.encode(text, 'euc-kr')
+    }
+    fs.writeFile(`${output}.csv`, text, (err) => {
+      if (err) throw err
+      console.log(`${output}.csv 저장완료.`)
+    })
+  })
 })

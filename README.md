@@ -19,49 +19,44 @@
 
 ![result](./docs/result.gif)
 
-> 청와대 국민청원 게시판의 데이터를 수집하는 스크래퍼 (https://github.com/lovit/petitions_scraper 참고)
+> 청와대 국민청원 게시판의 데이터를 수집하는 스크래퍼 입니다. (https://github.com/lovit/petitions_scraper 참고)
 
 ### 🏠 [Homepage](https://github.com/100milliongold/petitions_scraper_npm#readme)
 
-## Install
+## 설치
+
+글로벌로 설치 해서 사용하거나
 
 ```sh
 npm install -g petitions_scraper_npm
-```
-
-or
-
-```sh
-npm install --save petitions_scraper_npm
-```
-
-## Started (shell)
-
-```sh
 node_petitions_scraper -s <START> -e <END> -o <SAVEFILE>
 ```
 
-## Started (code)
+또는
 
-```javascript
+```sh
+npm install --save petitions_scraper_npm
+
+# index.js
 import node_petitions_scraper from 'node_petitions_scraper'
-
 petition_analyzer(<START> , <END>).then(res => console.log(res))
 ```
 
-## Build
+개발간에 사용 하시면 됩니다.
+
+## 빌드
 
 ```sh
 npm run build
 ```
 
-## Run tests
+## 테스트
 
 ```sh
 npm run test
 ```
 
-## Author
+## 기여자
 
 👤 **100milliongold <gadian88@gmail.com>**
 
@@ -69,11 +64,7 @@ npm run test
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/100milliongold/petitions_scraper_npm/issues). You can also take a look at the [contributing guide](https://github.com/100milliongold/petitions_scraper_npm/blob/master/CONTRIBUTING.md).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
+사용간에 문의사항은 [issues page](https://github.com/100milliongold/petitions_scraper_npm/issues) 으로 해주시기 바랍니다.
 
 ## 📝 License
 
