@@ -9,6 +9,10 @@ import { HTML, PETION } from '../../../typings'
 
 const cheerio = require('cheerio')
 
+/**
+ * 가져온 html 데이터를 파싱해서 json 으로 변환한다.
+ * @param html
+ */
 const parser = (html: HTML): PETION | undefined => {
   const $ = cheerio.load(html)
 
@@ -23,16 +27,20 @@ const parser = (html: HTML): PETION | undefined => {
 
   const crawled_at = new Date()
 
-  return {
-    begin,
-    category,
-    content,
-    crawled_at,
-    end,
-    num_agree,
-    status,
-    title,
-    petition_idx: undefined,
+  if (!is_closed_petition) {
+    return {
+      begin,
+      category,
+      content,
+      crawled_at,
+      end,
+      num_agree,
+      status,
+      title,
+      petition_idx: undefined,
+    }
+  } else {
+    return undefined
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "petitions_scraper_npm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "청와대 국민청원 게시판의 데이터를 수집하는 스크래퍼",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

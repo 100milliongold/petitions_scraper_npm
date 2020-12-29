@@ -10,6 +10,8 @@ const petitions_scraper = async (
     const res = await read_page(petition_idx)
     const html = <HTML>res.data
 
+    // console.log(html)
+
     const json = parser(html)
 
     if (json !== undefined) {

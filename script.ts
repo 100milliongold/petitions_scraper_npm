@@ -62,8 +62,16 @@ const scraper_list = list.map(
     return new Promise((resolve, reject) => {
       petitions_scraper(idx)
         .then((res) => {
-          console.log(clc.green('[SUCCESS] ') + `${idx} 번글 수집 성공!`)
-          resolve(res)
+          if (res !== undefined) {
+            console.log(clc.green('[SUCCESS] ') + `${idx} 번글 수집 성공!`)
+            resolve(res)
+          } else {
+            console.warn(
+              clc.yellow('[WARN] ') +
+                `${idx} 번글은 비공개된 청원이라 수집할수 없음`
+            )
+            resolve(undefined)
+          }
         })
         .catch((e) => {
           console.log(clc.red('[FAIL] ') + `${idx} 번글 수집 실패!`)
@@ -92,6 +100,7 @@ const dateFormat = require('dateformat')
  */
 Promise.all(scraper_list).then((result) => {
   const data = _(result)
+    .filter((o) => o !== undefined)
     .map(
       ({
         title,
@@ -106,9 +115,9 @@ Promise.all(scraper_list).then((result) => {
       }: PETION) => [
         title,
         category,
-        dateFormat(begin, 'yyyy-mm-dd 00:00:00'),
-        dateFormat(end, 'yyyy-mm-dd 00:00:00'),
-        dateFormat(crawled_at, 'yyyy-mm-dd HH:MM:ss'),
+        begin,
+        end,
+        crawled_at,
         status,
         num_agree,
         petition_idx,

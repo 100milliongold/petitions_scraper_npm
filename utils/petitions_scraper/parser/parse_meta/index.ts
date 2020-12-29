@@ -9,10 +9,10 @@ const getMeta = ($: any): META => {
   const category = <CATEGORY>meta.eq(0).text().substring(4)
 
   const begin_text = meta.eq(1).text().substring(4)
-  const begin = <BEGIN>new Date(begin_text)
+  const begin = <BEGIN>new Date(`${begin_text} 00:00:00`)
 
   const end_text = meta.eq(2).text().substring(4)
-  const end = <END>new Date(end_text)
+  const end = <END>new Date(`${end_text} 00:00:00`)
 
   return {
     category,
