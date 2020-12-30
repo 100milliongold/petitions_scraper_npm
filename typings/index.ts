@@ -22,13 +22,13 @@ export type PETITION_IDX_LIST = PETITION_IDX[]
 
 export type HTML = string
 
-export type META = {
+export interface META {
   begin: BEGIN
   end: END
   category: CATEGORY
 }
 
-export type PETION = {
+export interface PETION {
   begin: BEGIN
   category: CATEGORY
   content: CONTENT
