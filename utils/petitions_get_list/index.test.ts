@@ -12,9 +12,9 @@ describe('petitions_scraper', () => {
     } catch (error) {
       fail(error)
     }
-  })
+  }, 30000)
   it('길이가 동일한지 확인', async () => {
     var test = generator_array(start, end)
     expect(res.length).toEqual(test.length)
-  })
+  }, 30000)
 })
