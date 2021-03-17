@@ -38,8 +38,12 @@ node_petitions_scraper -s <START> -e <END> -o <SAVEFILE>
 npm install --save petitions_scraper_npm
 
 # index.js
-import node_petitions_scraper from 'node_petitions_scraper'
-petition_analyzer(<START> , <END>).then(res => console.log(res))
+import petitions from 'petitions_scraper_npm'
+
+petitions.scraper_list(<START> , <END>).then(res => console.log(res))
+
+petitions.scraper(index).then(res => console.log(res))
+
 ```
 
 개발간에 사용 하시면 됩니다.
